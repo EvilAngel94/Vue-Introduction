@@ -2,31 +2,23 @@
   <div id="employee-form">
     <form @submit.prevent="handleSubmit">
       <label>Employee name</label>
-      <label>
-        <input
-          v-model="employee.name"
+      <input
+          ref="first"
           type="text"
           :class="{ 'has-error': submitting && invalidName }"
+          v-model="employee.name"
           @focus="clearStatus"
           @keypress="clearStatus"
-        />
-      </label>
-      <label>Employee Email</label>
-      <label>
-        <input
-          v-model="employee.email"
+      >
+      <label>Employee email</label>
+      <input
           type="text"
           :class="{ 'has-error': submitting && invalidEmail }"
+          v-model="employee.email"
           @focus="clearStatus"
-          @keypress="clearStatus"
-        />
-      </label>
-      <p v-if="error && submitting" class="error-message">
-        ! Please fill out all required fields
-      </p>
-      <p v-if="success" class="success-message">
-        ✅ Employee successfully added
-      </p>
+      >
+      <p v-if="error && submitting" class="error-message">❗Please fill out all required fields</p>
+      <p v-if="success" class="success-message">✅ Employee successfully added</p>
       <button>Add Employee</button>
     </form>
   </div>
@@ -37,50 +29,50 @@ export default {
   name: "employee-form",
   data() {
     return {
-      submitting: false,
       error: false,
+      submitting: false,
       success: false,
       employee: {
-        name: '',
-        email: ''
+        name: "",
+        email: ""
       }
+    };
+  },
+  computed: {
+    invalidName() {
+      return this.employee.name === "";
+    },
+
+    invalidEmail() {
+      return this.employee.email === "";
     }
   },
   methods: {
     handleSubmit() {
-      this.submitting = true;
       this.clearStatus();
+      this.submitting = true;
 
       if (this.invalidName || this.invalidEmail) {
-        return this.error = true;
+        this.error = true;
+        return;
       }
 
-      this.$emit('add:employee', this.employee);
-
+      this.$emit("add:employee", this.employee);
+      this.$refs.first.focus();
       this.employee = {
-        name: '',
-        email: ''
+        name: "",
+        email: ""
       };
-
-      this.error = false;
-      this.success = true;
+      this.clearStatus();
       this.submitting = false;
     },
+
     clearStatus() {
       this.success = false;
       this.error = false;
     }
-  },
-  computed: {
-    // These are for validation.
-    invalidName() {
-      return this.employee.name === '';
-    },
-    invalidEmail() {
-      return this.employee.email === '';
-    }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -88,7 +80,7 @@ form {
   margin-bottom: 2rem;
 }
 
-[class*='-message'] {
+[class*="-message"] {
   font-weight: 500;
 }
 
