@@ -22,3 +22,9 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Useful links:
+[Example project](https://www.taniarascia.com/getting-started-with-vue/)
+[Document related to this project](https://docs.google.com/document/d/1u67ZhYznJjHsm6ItEBe4p8GHTPPN-DWI89xEnE5EWbI/edit#)
+[Official Documentation](https://vuejs.org/v2/guide/installation.html)
+[Official API Documenation](https://vuejs.org/v2/api/)

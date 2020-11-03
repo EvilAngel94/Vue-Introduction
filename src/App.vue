@@ -1,6 +1,8 @@
 <template>
   <div id="app" class="small-container">
     <h1>Employees</h1>
+    <!-- Hierin geven we aan wat voor soort event er ge-emit wordt vanuit de child component.
+    Wanneer dat gebeurt, dan gaan we de methode aanroepen die ernaast staat -->
     <employee-form @add:employee="addEmployee"/>
     <employee-table
         :employees="employees"
@@ -71,6 +73,7 @@ export default {
       }
     }
   },
+  // Function is executed once the project is loaded by the DOM.
   mounted() {
     this.getEmployees()
   }

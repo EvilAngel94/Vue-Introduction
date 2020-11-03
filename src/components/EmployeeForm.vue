@@ -2,21 +2,25 @@
   <div id="employee-form">
     <form @submit.prevent="handleSubmit">
       <label>Employee name</label>
-      <input
-          ref="first"
-          type="text"
-          :class="{ 'has-error': submitting && invalidName }"
-          v-model="employee.name"
-          @focus="clearStatus"
-          @keypress="clearStatus"
-      >
+      <label>
+        <input
+            ref="first"
+            type="text"
+            :class="{ 'has-error': submitting && invalidName }"
+            v-model="employee.name"
+            @focus="clearStatus"
+            @keypress="clearStatus"
+        >
+      </label>
       <label>Employee email</label>
-      <input
-          type="text"
-          :class="{ 'has-error': submitting && invalidEmail }"
-          v-model="employee.email"
-          @focus="clearStatus"
-      >
+      <label>
+        <input
+            type="text"
+            :class="{ 'has-error': submitting && invalidEmail }"
+            v-model="employee.email"
+            @focus="clearStatus"
+        >
+      </label>
       <p v-if="error && submitting" class="error-message">❗Please fill out all required fields</p>
       <p v-if="success" class="success-message">✅ Employee successfully added</p>
       <button>Add Employee</button>
